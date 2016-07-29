@@ -16,11 +16,11 @@ module.exports={
 		.send()
 		.end(function(resp)
 		{
-			var txt=resp.body.word+':'+resp.body.meaning;
-			if(txt.length>0){
+			var txt={heading : resp.body.word,text:resp.body.meaning};
+			if(txt.text.length>140){
 				tweetImage(txt);
 			}else{
-				tweetText(txt);
+				tweetText(txt.heading+':'+txt.text);
 			}
 		});
 	}
