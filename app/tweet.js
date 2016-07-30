@@ -27,9 +27,14 @@ module.exports={
 };
 
 function tweetText(msg){
-	console.log('tweeting',msg);
+	var san=new tim.sanitize(msg);
+	var text=san.removeWhiteSpace()
+			.removeTags()
+			.removeSpChars(':')
+			.getString();
+	console.log('tweeting',text);
 	T.post('statuses/update',{
-		status : msg
+		status : text
 	},function(err,res,data)
 	{
 		if(err){
@@ -43,8 +48,6 @@ function tweetImage(msg)
 	tim.generateTextImage(msg)
 	.then(function(imageURI)
 	{
-		// console.log(imageURI);
-		fs.writeFile('/var/tmp/img.txt',imageURI);
 		uploadImage(imageURI);
 	}).catch(function(err)
 	{
