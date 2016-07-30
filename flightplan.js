@@ -29,5 +29,5 @@ plan.remote(function(remote)
 
 	remote.log('reloading application');
 	remote.sudo('ln -snf ~/'+tmpDir+' ~/trendy_bot',{user:'deploy'});
-	remote.sudo('pm2 reload trendy_bot',{user:'deploy'});
+	remote.sudo('cd ~/trendy_bot && pm2 reload trendy_bot',{user:'deploy'});
 });
