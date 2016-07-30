@@ -8,11 +8,13 @@ var unirest=require('unirest');
 var tim=require('text-image-merger');
 var fs=require("fs");
 var T=new twit(twitterConfig);
+var tweetURL=url+'/'+endPoint;
 module.exports={
 	send : function()
 	{
 		console.log('tweeting...');
-		unirest.get(config.get('API.url')+'/'+config.get('API.fetch-url'))
+		console.log(tweetURL);
+		unirest.get(tweetURL)
 		.send()
 		.end(function(resp)
 		{

@@ -9,10 +9,10 @@ plan.target('production',[
 var tmpDir='trendy_bot'+new Date().getTime();
 
 plan.local(function(local)
-{/*
+{
 	local.log('====started planning===');
 	local.log('pushing master to remote ');
-	var err=local.exec('git push origin master');*/
+	var err=local.exec('git push origin master');
 });
 
 plan.remote(function(remote)
@@ -23,6 +23,7 @@ plan.remote(function(remote)
 	if(notExists){
 		remote.exec('git clone git@github.com:ahhmarr/trendy-bot.git trendy_bot');	
 	}
+	remote.exec('cd trendy_bot && git pull origin master');
 	remote.exec('cd trendy_bot && npm install --production')
 	var pmNotExists=remote.exec('cd trendy_bot && pm2 reload trendy_bot ');
 	if(pmNotExists){
