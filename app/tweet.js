@@ -13,7 +13,6 @@ module.exports={
 	send : function()
 	{
 		console.log('tweeting...');
-		console.log(tweetURL);
 		unirest.get(tweetURL)
 		.send()
 		.end(function(resp)
